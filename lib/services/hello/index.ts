@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { FusionStack, FusionStackProps } from "../../core/FusionStack";
 import { FusionLambda } from "../../core/FusionLambda";
-import { resolve } from "path";
+import { join } from "path";
 
 export class HelloStack extends FusionStack {
     constructor(scope: Construct, id: string, props: FusionStackProps) {
@@ -9,8 +9,8 @@ export class HelloStack extends FusionStack {
 
         const helloLambda = new FusionLambda(this, "HelloLambda", {
             functionName: this.formatedName("hello-lambda"),
-            lambdaPath: resolve(__dirname),
             description: "Hello Lambda",
+            entry: join(__dirname, "./lambdas/hello.ts"),
             envName: props.envName,
         });
     }
