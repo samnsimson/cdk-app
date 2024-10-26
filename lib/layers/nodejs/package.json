@@ -9,7 +9,7 @@
         "watch": "tsc -w",
         "test": "jest",
         "cdk": "cdk",
-        "synth": "rm -rf ./lib/layers && mkdir -p ./lib/layers/nodejs && cp package.json ./lib/layers/nodejs && cd lib/layers/nodejs && npm install && cd ../../../ && cdk synth"
+        "synth": "rm -rf ./lib/layers && mkdir -p ./lib/layers/nodejs && cp package.json ./lib/layers/nodejs && cd lib/layers/nodejs && yarn && cd ../../../ && cdk synth"
     },
     "devDependencies": {
         "@types/jest": "^29.5.12",
