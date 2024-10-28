@@ -15,13 +15,13 @@ export interface FusionLambdaProps {
 }
 
 export class FusionLambda extends Construct {
-    private readonly lambdaFunction: NodejsFunction;
+    public readonly lambda: NodejsFunction;
 
     constructor(scope: Construct, id: string, props: FusionLambdaProps) {
         super(scope, utils.pascalCase(id));
 
         // Lambda Construct
-        this.lambdaFunction = new NodejsFunction(this, utils.pascalCase(id), {
+        this.lambda = new NodejsFunction(this, utils.pascalCase(id), {
             functionName: props.functionName,
             description: props.description,
             runtime: Runtime.NODEJS_20_X,
@@ -36,6 +36,6 @@ export class FusionLambda extends Construct {
 
         // Runtime Layer
         const fusionRuntimeLayer = new FusionRuntime(this, "FusionRuntime", { envName: props.envName });
-        this.lambdaFunction.addLayers(fusionRuntimeLayer);
+        this.lambda.addLayers(fusionRuntimeLayer);
     }
 }
